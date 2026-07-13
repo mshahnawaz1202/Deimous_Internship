@@ -1,0 +1,43 @@
+===========================================================
+             Explanation of Changes Made
+===========================================================
+
+The given profile card had some small UI problems. I fixed all of them to match the given design.
+
+1. Card Center
+- Before: The card was not in the center because Flexbox was not used.
+- After: I added display: flex, justify-content: center, and align-items: center in the body to center the card.
+
+2. Avatar Shape
+- Before: The avatar was using border-radius: 8px, so it looked like a rounded square.
+- After: I changed border-radius to 50%, so it became a perfect circle.
+
+3. Text Alignment
+- Before: The name and role were left aligned because text-align: left was used.
+- After: I changed it to text-align: center, so the text is now in the center.
+
+4. Divider Line
+- Before: The divider CSS was already written, but it was not added in the HTML.
+- After: I added <hr class="divider"> to show the horizontal line.
+
+5. Button Color
+- Before: The button color was #7a5fb0, which did not match the design.
+- After: I changed the button color to #533483 as required.
+
+6. Button Hover Effect
+- Before: There was no hover effect on the button.
+- After: I added a darker hover color, so the button changes color when the mouse is over it.
+
+7. Spacing
+- Before: The spacing between the avatar, name, role, divider, and button was not proper.
+- After: I adjusted the margins to make the layout clean and balanced.
+
+8. Card Border Radius
+- Before: The card border-radius was 6px, so the corners looked too sharp.
+- After: I changed it to 16px to match the design specification.
+
+===========================================================
+                     Final Result
+===========================================================
+
+After making all these changes, the profile card looks clean, balanced, and matches the given design. The layout is centered, the avatar is a perfect circle, the text is aligned correctly, the divider is visible, the button has the correct color and hover effect, and the spacing is more consistent.
