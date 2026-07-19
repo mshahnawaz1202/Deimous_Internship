@@ -20,6 +20,8 @@ export function Statistics({ logEntries }: StatisticsProps) {
   const todayTotal  = calculateTodayTotal(logEntries);
   const streak      = calculateStreak(logEntries);
   const sprintCount = todayCompleted.length;
+  const targetSprints = 4;
+  const progressPercent = Math.min(100, Math.round((sprintCount / targetSprints) * 100));
 
   return (
     <motion.section
@@ -36,6 +38,66 @@ export function Statistics({ logEntries }: StatisticsProps) {
       >
         Today's Stats
       </h2>
+
+      {/* Target Progress Card */}
+      <div
+        className="rounded-2xl p-4.5 flex items-center justify-between relative overflow-hidden"
+        style={{
+          background: 'var(--surface)',
+          border: '1px solid var(--border)',
+          boxShadow: '0 4px 18px var(--shadow)',
+        }}
+      >
+        <div className="flex flex-col gap-1 min-w-0">
+          <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--text-faint)' }}>
+            Daily Goal
+          </span>
+          <span className="text-sm font-bold truncate" style={{ color: 'var(--text)' }}>
+            {sprintCount >= targetSprints ? 'Goal Reached! 🚀' : `${sprintCount} of ${targetSprints} Sprints`}
+          </span>
+          <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+            {progressPercent}% completed
+          </span>
+        </div>
+
+        {/* Circular progress SVG */}
+        <div className="relative w-12 h-12 shrink-0 flex items-center justify-center select-none">
+          <svg className="w-full h-full transform -rotate-90">
+            {/* Background circle */}
+            <circle
+              cx="24"
+              cy="24"
+              r="19"
+              stroke="var(--border)"
+              strokeWidth="3.5"
+              fill="transparent"
+            />
+            {/* Active circle */}
+            <motion.circle
+              cx="24"
+              cy="24"
+              r="19"
+              stroke="url(#stats-gradient)"
+              strokeWidth="4"
+              fill="transparent"
+              strokeDasharray={2 * Math.PI * 19}
+              initial={{ strokeDashoffset: 2 * Math.PI * 19 }}
+              animate={{ strokeDashoffset: 2 * Math.PI * 19 * (1 - progressPercent / 100) }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+              strokeLinecap="round"
+            />
+            <defs>
+              <linearGradient id="stats-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--primary)" />
+                <stop offset="100%" stopColor="#EC4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span className="absolute text-[10px] font-extrabold" style={{ color: 'var(--text)' }}>
+            {progressPercent}%
+          </span>
+        </div>
+      </div>
 
       <StatBadge
         label="Focus Time"
