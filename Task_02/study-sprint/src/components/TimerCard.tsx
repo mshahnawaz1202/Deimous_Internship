@@ -49,6 +49,15 @@ export function TimerCard({
   const isCompleted = timerState === 'completed';
   const isBusy      = isRunning || isPaused;
 
+  // Dynamic glow depending on state
+  const glowShadow = isRunning
+    ? '0 16px 48px rgba(99, 102, 241, 0.12), 0 0 24px rgba(99, 102, 241, 0.08), 0 8px 32px var(--shadow)'
+    : isPaused
+    ? '0 16px 48px rgba(251, 113, 133, 0.08), 0 0 24px rgba(251, 113, 133, 0.05), 0 8px 32px var(--shadow)'
+    : isCompleted
+    ? '0 16px 48px rgba(52, 211, 153, 0.18), 0 0 24px rgba(52, 211, 153, 0.12), 0 8px 32px var(--shadow)'
+    : '0 8px 32px var(--shadow)';
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 24 }}
@@ -59,53 +68,93 @@ export function TimerCard({
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
-        boxShadow: '0 8px 40px var(--shadow)',
+        boxShadow: glowShadow,
+        transition: 'box-shadow 0.4s ease',
       }}
     >
-      {/* ── Coloured accent bar ───────────────── */}
+      {/* ── Coloured accent bar with sliding gradient ───────────────── */}
       <div
-        style={{
-          height: '3px',
-          background: 'linear-gradient(90deg, var(--primary), transparent)',
-        }}
-      />
+        className="w-full relative overflow-hidden"
+        style={{ height: '4px' }}
+      >
+        <motion.div
+          animate={isRunning ? {
+            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+          } : {}}
+          transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: isCompleted
+              ? 'var(--success)'
+              : isPaused
+              ? 'linear-gradient(90deg, var(--primary), var(--danger))'
+              : 'linear-gradient(90deg, var(--primary), #EC4899, var(--primary))',
+            backgroundSize: '200% 200%',
+          }}
+        />
+      </div>
 
       <div className="flex flex-col items-center gap-7 px-6 sm:px-10 py-8">
 
         {/* ── Status pill ──────────────────────── */}
         <AnimatePresence mode="wait">
-          <motion.span
+          <motion.div
             key={statusMsg}
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{    opacity: 0, y:  6 }}
             transition={{ duration: 0.2 }}
-            className="px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide"
+            className="px-4.5 py-1.5 rounded-full text-xs font-bold tracking-wider flex items-center gap-2 select-none"
             style={{
               background: 'var(--surface-2)',
-              color: 'var(--text-muted)',
+              color: 'var(--text)',
               border: '1px solid var(--border)',
+              boxShadow: 'inset 0 1px 2px var(--shadow)',
             }}
           >
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${
+                isRunning ? 'animate-pulse' :
+                isCompleted ? 'animate-bounce' :
+                ''
+              }`}
+              style={{
+                background: isRunning ? 'var(--primary)' :
+                            isPaused ? 'var(--danger)' :
+                            isCompleted ? 'var(--success)' :
+                            'var(--text-faint)'
+              }}
+            />
             {statusMsg}
-          </motion.span>
+          </motion.div>
         </AnimatePresence>
 
         {/* ── Timer Display with inset well ────── */}
         <div
-          className="w-full flex justify-center items-center py-12 px-6 rounded-2xl"
+          className="w-full flex justify-center items-center py-10 sm:py-14 px-6 rounded-2xl relative overflow-hidden"
           style={{
-            background: 'var(--surface-2)',
-            border: '1px solid var(--border)',
-            boxShadow: 'inset 0 2px 12px var(--shadow)',
+            background: 'radial-gradient(circle at center, rgba(15, 23, 42, 0.95), rgba(9, 10, 15, 0.98))',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
+            boxShadow: 'inset 0 4px 20px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.1)',
           }}
         >
-          <TimerBoard secondsLeft={secondsLeft} />
+          {/* Subtle grid pattern background overlay in the timer well */}
+          <div
+            className="absolute inset-0 opacity-5 pointer-events-none"
+            style={{
+              backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px)',
+              backgroundSize: '16px 16px',
+            }}
+          />
+          <div className="relative z-10">
+            <TimerBoard secondsLeft={secondsLeft} />
+          </div>
         </div>
 
         {/* ── Mode sub-label ───────────────────── */}
-        <p className="text-sm font-medium" style={{ color: 'var(--text-faint)' }}>
-          <span style={{ color: 'var(--primary)', fontWeight: 600 }}>{duration.label}</span>
+        <p className="text-sm font-bold tracking-wide" style={{ color: 'var(--text-faint)' }}>
+          <span style={{ color: 'var(--primary)', fontWeight: 800 }}>{duration.label}</span>
           <span className="mx-2 opacity-40">·</span>
           {duration.minutes} minutes
         </p>

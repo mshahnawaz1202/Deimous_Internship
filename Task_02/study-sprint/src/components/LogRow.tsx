@@ -22,33 +22,39 @@ export function LogRow({ entry, index }: LogRowProps) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 16, transition: { duration: 0.15 } }}
       transition={{ duration: 0.3, delay: index * 0.05, ease: 'easeOut' }}
+      whileHover={{ y: -1.5, borderColor: isCompleted ? 'rgba(52, 211, 153, 0.25)' : 'rgba(251, 113, 133, 0.25)' }}
       className="
-        flex items-center justify-between
-        py-4 px-5 rounded-xl
+        relative flex items-center justify-between
+        py-3.5 px-5 rounded-2xl border
+        transition-all duration-300
       "
       style={{
         background: 'var(--surface)',
-        border: '1px solid var(--border)',
+        borderColor: 'var(--border)',
+        boxShadow: '0 2px 8px var(--shadow)',
       }}
     >
-      {/* Left — dot, title, meta */}
-      <div className="flex items-center gap-3 min-w-0">
-        <span
-          className="shrink-0 w-2 h-2 rounded-full"
-          style={{
-            background: isCompleted ? 'var(--success)' : 'var(--danger)',
-          }}
-          aria-hidden="true"
-        />
+      {/* Timeline Bullet Node (responsive center alignment) */}
+      <span
+        className="timeline-dot"
+        style={{
+          '--dot-color': isCompleted ? 'var(--success)' : 'var(--danger)',
+          '--dot-subtle': isCompleted ? 'var(--success-subtle)' : 'var(--danger-subtle)',
+        } as React.CSSProperties}
+        aria-hidden="true"
+      />
+
+      {/* Left — title, meta */}
+      <div className="flex items-center min-w-0">
         <div className="min-w-0">
           <p
-            className="font-semibold text-sm truncate"
+            className="font-bold text-sm truncate"
             style={{ color: 'var(--text)' }}
           >
             {modeLabel}
           </p>
           <p
-            className="text-xs mt-0.5"
+            className="text-xs font-medium mt-0.5"
             style={{ color: 'var(--text-muted)' }}
           >
             {formatTimeOfDay(new Date(entry.startTime))}
@@ -60,10 +66,11 @@ export function LogRow({ entry, index }: LogRowProps) {
 
       {/* Right — status badge */}
       <div
-        className="shrink-0 flex items-center gap-1.5 ml-3 px-2.5 py-1 rounded-lg text-xs font-semibold capitalize"
+        className="shrink-0 flex items-center gap-1 ml-3 px-2.5 py-1 rounded-lg text-xs font-bold capitalize select-none border"
         style={{
           background: isCompleted ? 'var(--success-subtle)' : 'var(--danger-subtle)',
           color: isCompleted ? 'var(--success)' : 'var(--danger)',
+          borderColor: isCompleted ? 'rgba(52, 211, 153, 0.15)' : 'rgba(251, 113, 133, 0.15)',
         }}
       >
         {isCompleted ? (
