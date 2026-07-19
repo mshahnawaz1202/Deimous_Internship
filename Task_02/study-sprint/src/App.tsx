@@ -45,16 +45,20 @@ function AppContent() {
       className="min-h-screen"
       style={{ background: 'var(--bg)', color: 'var(--text)' }}
     >
-      {/* Subtle radial glow in the background */}
+      {/* Subtle glowing aurora backdrop */}
       <div
         aria-hidden="true"
+        className="pulse-glow-effect"
         style={{
           position: 'fixed',
-          inset: 0,
+          top: 0,
+          left: '50%',
+          width: '100vw',
+          height: '100vh',
           pointerEvents: 'none',
           zIndex: 0,
           background:
-            'radial-gradient(ellipse 70% 50% at 50% 0%, var(--primary-subtle) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 40% at 50% 0%, var(--primary-subtle) 0%, transparent 75%)',
         }}
       />
 

@@ -93,3 +93,45 @@ button {
 .font-mono {
   font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
+
+/* ─── Custom Animations ──────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -10%) scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-50%, -5%) scale(1.15);
+  }
+}
+
+.pulse-glow-effect {
+  animation: pulse-glow 10s ease-in-out infinite;
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ─── Timeline Node ──────────────────────────── */
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--dot-color);
+  box-shadow: 0 0 0 4px var(--dot-subtle), 0 0 10px var(--dot-color);
+  left: -29px; /* matches pl-6 (24px) + half-dot (5px) */
+}
+@media (min-width: 640px) {
+  .timeline-dot {
+    left: -37px; /* matches pl-8 (32px) + half-dot (5px) */
+  }
+}
