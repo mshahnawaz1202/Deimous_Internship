@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background: #f4f7fb;
+    padding: 40px 20px;
+}
+
+.container{
+    max-width: 900px;
+    margin: auto;
+}
+
+/* ===========================
+        FORM CARD
+=========================== */
+
+.form-card{
+    background: #fff;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.head1{
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.form-card>p{
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+/* ===========================
+        FORM GROUP
+=========================== */
+
+.form-group{
+    margin-bottom: 22px;
+}
+
+.form-group label{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #334155;
+}
+
+.form-group p{
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #334155;
+}
+
+/* ===========================
+        INPUTS
+=========================== */
+
+input[type="text"],
+input[type="email"],
+textarea{
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: .3s;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus{
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+textarea{
+    resize: vertical;
+    min-height: 130px;
+}
+
+/* ===========================
+        PLACEHOLDER
+=========================== */
+
+input::placeholder,
+textarea::placeholder{
+    color: #94a3b8;
+}
+
+/* ===========================
+      RADIO BUTTONS
+=========================== */
+
+input[type="radio"]{
+    margin-right: 8px;
+    margin-top: 8px;
+}
+
+input[type="radio"] + label{
+    display: inline;
+    font-weight: 400;
+    margin-right: 20px;
+}
+
+/* ===========================
+      CHARACTER COUNTER
+=========================== */
+
+#charCounter{
+    display: block;
+    text-align: right;
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ===========================
+        ERRORS
+=========================== */
+
+.error{
+    display: block;
+    color: #dc2626;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* ===========================
+        BUTTON
+=========================== */
+
+.feedback{
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.feedback:hover{
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.feedback:active{
+    transform: scale(.98);
+}
+
+/* ===========================
+   LOADING / SUCCESS / ERROR
+=========================== */
+
+.loading,
+.success,
+.apiError{
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
+}
+
+.loading{
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.success{
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.apiError{
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* ===========================
+      BONUS SECTION
+=========================== */
+
+.latest-posts{
+    margin-top: 40px;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.latest-posts h2{
+    text-align: center;
+    color: #1e293b;
+}
+
+.latest-posts>p{
+    text-align: center;
+    color: #64748b;
+    margin: 10px 0 30px;
+}
+
+#postsContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 20px;
+}
+
+.post-card{
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    transition: .3s;
+}
+
+.post-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.post-card h3{
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.post-card p{
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* ===========================
+        RESPONSIVE
+=========================== */
+
+@media (max-width:768px){
+
+    body{
+        padding:20px 15px;
+    }
+
+    .form-card,
+    .latest-posts{
+        padding:25px;
+    }
+
+    .head1{
+        font-size:26px;
+    }
+
+    .feedback{
+        font-size:15px;
+    }
+}
