@@ -4,116 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internship Feedback Form</title>
+    <meta name="description" content="Submit your internship feedback and browse recent feedback from other interns.">
+    <title>Intern Feedback Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+    <!-- Blob background effects -->
+    <div class="blob blob-1" aria-hidden="true"></div>
+    <div class="blob blob-2" aria-hidden="true"></div>
+    <div class="blob blob-3" aria-hidden="true"></div>
+
     <div class="container">
+
+        <!-- FORM CARD -->
         <section class="form-card">
-            <h1 class="head1"> Intern Feedback Form &#128210</h1>
-            <p>We'd love to hear your feedback. Please fill out the form below.</p>
-            <form class="feedbackform">
+            <h1 class="head1">Intern Feedback Form</h1>
+            <p class="subtitle">We would love to hear your feedback. Please fill out the form below.</p>
+
+            <form class="feedbackform" novalidate>
+
+                <!-- Name -->
                 <div class="form-group">
-                    <!-- Name  -->
-                    <label for="name">Name : </label>
-                    <input type="text" id='name'
-                    placeholder="shahanwaz"
-                    >
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="shahnawaz" autocomplete="name">
                     <span class="error" id="nameError"></span>
-                    <br><br>
                 </div>
+
+                <!-- Email -->
                 <div class="form-group">
-                    <!-- email -->
-                    <label for="email">Email : </label>
-                    <input type="email" id='email'
-                    placeholder="shahnawaz@email.com"
-                    >
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="shahnawaz@email.com" autocomplete="email">
                     <span class="error" id="emailError"></span>
-                    <br><br>
-                </div>
-                <div class="form-group">
-                    <!-- cateogory -->
-                    <p>Select Cateorgory</p>
-
-                    <input type="radio" name="General" id="general">
-                    <label for="General">General</label><br>
-
-                    <input type="radio" name="Bug" id="Bug">
-                    <label for="Bug">Bug</label><br>
-
-                    <input type="radio" name="Sugestion" id="Suggestion">
-                    <label for="Bug">Suggestion</label><br><br><br>
-                    <span class="error" id="CateogoryError"></span>
-                </div>
-                <div class="form-group">
-                    <!-- Rating   -->
-                    <p>Rating</p>
-
-                    <input type="radio" name="rate1" id="rate1">
-                    <label for="rate1">1</label><br>
-
-                    <input type="radio" name="rate2" id="rate2">
-                    <label for="rate2">2</label><br>
-
-                    <input type="radio" name="rate3" id="rate3">
-                    <label for="rate3">3</label><br>
-
-                    <input type="radio" name="rate4" id="rate4">
-                    <label for="rate4">4</label><br>
-
-                    <input type="radio" name="rate5" id="rate5">
-                    <label for="rate5">5</label><br>
-                    <span class="error" id="ratingError"></span>
-                    <br>
-                    <br>
                 </div>
 
+                <!-- Category -->
                 <div class="form-group">
-                    <!-- Message -->
-                    <div class="form-group">
-                        <label for="message">Message</label>
-
-                        <textarea id="message" name="message" rows="6" placeholder="Write your feedback here..."
-                            maxlength="500"></textarea>
-
-                        <small id="charCounter">0 / 500</small>
-
-                        <span class="error" id="messageError"></span>
+                    <p class="group-label">Feedback Category</p>
+                    <div class="radio-group">
+                        <label class="radio-label" for="cat-general">
+                            <input type="radio" name="category" id="cat-general" value="General">
+                            <span class="radio-custom"></span>
+                            General
+                        </label>
+                        <label class="radio-label" for="cat-bug">
+                            <input type="radio" name="category" id="cat-bug" value="Bug">
+                            <span class="radio-custom"></span>
+                            Bug
+                        </label>
+                        <label class="radio-label" for="cat-suggestion">
+                            <input type="radio" name="category" id="cat-suggestion" value="Suggestion">
+                            <span class="radio-custom"></span>
+                            Suggestion
+                        </label>
                     </div>
-                    <br>
+                    <span class="error" id="categoryError"></span>
                 </div>
+
+                <!-- Rating -->
                 <div class="form-group">
+                    <p class="group-label">Overall Rating</p>
+                    <div class="star-rating" id="starRating">
+                        <input type="radio" name="rating" id="r5" value="5"><label for="r5" title="5 stars">&#9733;</label>
+                        <input type="radio" name="rating" id="r4" value="4"><label for="r4" title="4 stars">&#9733;</label>
+                        <input type="radio" name="rating" id="r3" value="3"><label for="r3" title="3 stars">&#9733;</label>
+                        <input type="radio" name="rating" id="r2" value="2"><label for="r2" title="2 stars">&#9733;</label>
+                        <input type="radio" name="rating" id="r1" value="1"><label for="r1" title="1 star">&#9733;</label>
+                    </div>
+                    <span class="error" id="ratingError"></span>
+                </div>
 
-                    <button class ='feedback' type="submit">Submit Feedback</button>
+                <!-- Message -->
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="6"
+                        placeholder="Write your feedback here..." maxlength="500"></textarea>
+                    <small id="charCounter">0 / 500</small>
+                    <span class="error" id="messageError"></span>
+                </div>
 
-                    <div class="loading"></div>
-                    <div class="success"></div>
-                    <div class="apiError"></div>
-
-
+                <!-- Submit -->
+                <div class="form-group" style="margin-bottom:0">
+                    <button class="feedback" id="submitBtn" type="submit">Submit Feedback</button>
+                    <div class="loading" id="loadingBanner">
+                        <span class="spinner"></span>
+                        <span>Submitting your feedback, please wait...</span>
+                    </div>
+                    <div class="success" id="successBanner"></div>
+                    <div class="apiError" id="errorBanner"></div>
                 </div>
 
             </form>
-
-
         </section>
-        <!--  Latest Feedback -->
+
+        <!-- LATEST FEEDBACK -->
         <section class="latest-posts">
             <h2>Latest Feedback</h2>
             <p>Recent feedback submitted by interns.</p>
-
             <div id="postsContainer">
-
-                <article class="post-card">
-                    <h3>Loading...</h3>
-                    <p>Please wait while we fetch the latest feedback.</p>
-                </article>
-
+                <div class="skeleton-grid">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
             </div>
         </section>
+
     </div>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
