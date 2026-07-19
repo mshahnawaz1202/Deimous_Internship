@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Feedback Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="conatiner">
+        <section class="form-card">
+            <h1 class="head1"> Intern Feedback Form &#128210</h1>
+            <p></p>
+            <form class="feedbackform">
+                <div class="form-group">
+                    <!-- Name  -->
+                    <label for="name">Name : </label>
+                    <input type="text" id='name'>
+                    <span class="error" id="nameError"></span>
+                    <br><br>
+                    <!-- email -->
+                    <label for="email">Email : </label>
+                    <input type="email" id='email'>
+                    <span class="error" id="emailError"></span>
+                    <br><br>
+                    <!-- cateogory -->
+                    <p>Select Cateorgory</p>
+
+                    <input type="radio" name="General" id="general">
+                    <label for="General">General</label><br>
+
+                    <input type="radio" name="Bug" id="Bug">
+                    <label for="Bug">Bug</label><br>
+
+                    <input type="radio" name="Sugestion" id="Suggestion">
+                    <label for="Bug">Suggestion</label><br><br><br>
+                    <span class="error" id="CateogoryError"></span>
+
+                    <!-- Rating   -->
+                    <p>Rating</p>
+
+                    <input type="radio" name="rate1" id="rate1">
+                    <label for="rate1">1</label><br>
+
+                    <input type="radio" name="rate2" id="rate2">
+                    <label for="rate2">2</label><br>
+
+                    <input type="radio" name="rate3" id="rate3">
+                    <label for="rate3">3</label><br>
+
+                    <input type="radio" name="rate4" id="rate4">
+                    <label for="rate4">4</label><br>
+
+                    <input type="radio" name="rate5" id="rate5">
+                    <label for="rate5">5</label><br>
+                    <span class="error" id="ratingError"></span>
+
+
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label for="message">Message</label>
+
+                        <textarea id="message" name="message" rows="6" placeholder="Write your feedback here..."
+                            maxlength="500"></textarea>
+
+                        <small id="charCounter">0 / 500</small>
+
+                        <span class="error" id="messageError"></span>
+                    </div>
+
+
+                    <button type="submit">Submit Feedback</button>
+
+                    <div class="loading"></div>
+                    <div class="success"></div>
+                    <div class="apiError"></div>
+
+
+                </div>
+
+            </form>
+
+        </section>
+    </div>
+
+</body>
+
+</html>
