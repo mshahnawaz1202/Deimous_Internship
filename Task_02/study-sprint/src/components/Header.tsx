@@ -24,15 +24,21 @@ export function Header() {
         <div className="flex items-center gap-3">
           {/* Pulsing accent dot */}
           <motion.span
-            animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{ 
+              scale: [1, 1.2, 1], 
+              boxShadow: [
+                '0 0 0px var(--primary)',
+                '0 0 10px var(--primary)',
+                '0 0 0px var(--primary)'
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             className="block w-2.5 h-2.5 rounded-full shrink-0"
-            style={{ background: 'var(--primary)' }}
+            style={{ background: 'var(--primary-gradient)' }}
             aria-hidden="true"
           />
           <span
-            className="text-sm sm:text-base font-bold tracking-[0.2em] uppercase select-none"
-            style={{ color: 'var(--text)' }}
+            className="text-sm sm:text-base font-extrabold tracking-[0.22em] uppercase select-none bg-gradient-to-r from-[var(--primary)] to-[#EC4899] bg-clip-text text-transparent"
           >
             Study Sprint
           </span>
