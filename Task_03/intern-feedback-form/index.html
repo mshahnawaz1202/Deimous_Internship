@@ -9,22 +9,30 @@
 </head>
 
 <body>
-    <div class="conatiner">
+    <div class="container">
         <section class="form-card">
             <h1 class="head1"> Intern Feedback Form &#128210</h1>
-            <p></p>
+            <p>We'd love to hear your feedback. Please fill out the form below.</p>
             <form class="feedbackform">
                 <div class="form-group">
                     <!-- Name  -->
                     <label for="name">Name : </label>
-                    <input type="text" id='name'>
+                    <input type="text" id='name'
+                    placeholder="shahanwaz"
+                    >
                     <span class="error" id="nameError"></span>
                     <br><br>
+                </div>
+                <div class="form-group">
                     <!-- email -->
                     <label for="email">Email : </label>
-                    <input type="email" id='email'>
+                    <input type="email" id='email'
+                    placeholder="shahnawaz@email.com"
+                    >
                     <span class="error" id="emailError"></span>
                     <br><br>
+                </div>
+                <div class="form-group">
                     <!-- cateogory -->
                     <p>Select Cateorgory</p>
 
@@ -37,7 +45,8 @@
                     <input type="radio" name="Sugestion" id="Suggestion">
                     <label for="Bug">Suggestion</label><br><br><br>
                     <span class="error" id="CateogoryError"></span>
-
+                </div>
+                <div class="form-group">
                     <!-- Rating   -->
                     <p>Rating</p>
 
@@ -58,8 +67,9 @@
                     <span class="error" id="ratingError"></span>
                     <br>
                     <br>
+                </div>
 
-
+                <div class="form-group">
                     <!-- Message -->
                     <div class="form-group">
                         <label for="message">Message</label>
@@ -72,8 +82,10 @@
                         <span class="error" id="messageError"></span>
                     </div>
                     <br>
+                </div>
+                <div class="form-group">
 
-                    <button type="submit">Submit Feedback</button>
+                    <button class ='feedback' type="submit">Submit Feedback</button>
 
                     <div class="loading"></div>
                     <div class="success"></div>
