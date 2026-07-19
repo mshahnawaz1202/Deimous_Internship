@@ -28,19 +28,20 @@ export function DailyLog({ logEntries }: DailyLogProps) {
       aria-label="Daily session log"
     >
       {/* Heading row */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 px-1">
         <h2
-          className="text-xs font-semibold uppercase tracking-widest"
+          className="text-xs font-bold uppercase tracking-widest"
           style={{ color: 'var(--text-muted)' }}
         >
           Today's Log
         </h2>
         {todayEntries.length > 0 && (
           <span
-            className="text-xs font-semibold px-2 py-0.5 rounded-full"
+            className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full select-none"
             style={{
               background: 'var(--primary-subtle)',
               color: 'var(--primary)',
+              border: '1px solid var(--border)',
             }}
           >
             {todayEntries.length} session{todayEntries.length !== 1 ? 's' : ''}
@@ -51,37 +52,54 @@ export function DailyLog({ logEntries }: DailyLogProps) {
       {todayEntries.length === 0 ? (
         /* Empty state */
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
           className="
             flex flex-col items-center justify-center
-            py-14 rounded-xl text-center gap-3
+            py-14 rounded-2xl text-center gap-3
           "
           style={{
             background: 'var(--surface)',
-            border: '1px dashed var(--border)',
+            border: '1.5px dashed var(--border)',
+            boxShadow: '0 4px 12px var(--shadow)',
           }}
         >
-          <BookOpen
-            size={28}
-            style={{ color: 'var(--text-faint)' }}
-            aria-hidden="true"
-          />
-          <p className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>
-            No sessions yet
-          </p>
-          <p className="text-xs" style={{ color: 'var(--text-faint)' }}>
-            Start a sprint to see your progress here
-          </p>
+          <motion.div
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <BookOpen
+              size={32}
+              style={{ color: 'var(--text-faint)' }}
+              aria-hidden="true"
+            />
+          </motion.div>
+          <div>
+            <p className="text-sm font-bold" style={{ color: 'var(--text-muted)' }}>
+              No sessions logged today
+            </p>
+            <p className="text-xs mt-1" style={{ color: 'var(--text-faint)' }}>
+              Start a sprint above to trace your history here
+            </p>
+          </div>
         </motion.div>
       ) : (
-        <ul className="flex flex-col gap-2" aria-label="Session history">
-          <AnimatePresence initial={false}>
-            {todayEntries.map((entry, index) => (
-              <LogRow key={entry.id} entry={entry} index={index} />
-            ))}
-          </AnimatePresence>
-        </ul>
+        <div className="relative ml-2 sm:ml-4 pl-6 sm:pl-8">
+          {/* Vertical connecting timeline line */}
+          <div
+            className="absolute top-5 bottom-5 left-0 w-[1.5px] pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, var(--primary), var(--border-2) 70%, transparent)',
+            }}
+          />
+          <ul className="flex flex-col gap-3" aria-label="Session history">
+            <AnimatePresence initial={false}>
+              {todayEntries.map((entry, index) => (
+                <LogRow key={entry.id} entry={entry} index={index} />
+              ))}
+            </AnimatePresence>
+          </ul>
+        </div>
       )}
     </motion.section>
   );

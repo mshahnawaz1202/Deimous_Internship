@@ -26,21 +26,23 @@ function getVariantStyle(variant: Variant): React.CSSProperties {
   switch (variant) {
     case 'primary':
       return {
-        background: 'var(--primary)',
+        background: 'var(--primary-gradient)',
         color: 'var(--primary-fg)',
-        border: '1.5px solid transparent',
+        border: '1px solid transparent',
       };
     case 'ghost':
       return {
-        background: 'transparent',
+        background: 'rgba(255, 255, 255, 0.02)',
         color: 'var(--text)',
-        border: '1.5px solid var(--border)',
+        border: '1px solid var(--border)',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
       };
     case 'danger':
       return {
-        background: 'var(--danger)',
-        color: '#fff',
-        border: '1.5px solid transparent',
+        background: 'var(--danger-gradient)',
+        color: '#FFFFFF',
+        border: '1px solid transparent',
       };
   }
 }
@@ -67,9 +69,9 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={isDisabled}
-      whileHover={!isDisabled ? { scale: 1.02, y: -1 } : {}}
-      whileTap={!isDisabled  ? { scale: 0.97 }         : {}}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      whileHover={!isDisabled ? { scale: 1.015, y: -0.5 } : {}}
+      whileTap={!isDisabled  ? { scale: 0.98 }         : {}}
+      transition={{ type: 'spring', stiffness: 450, damping: 25 }}
       aria-label={ariaLabel}
       aria-disabled={isDisabled}
       aria-busy={loading}
@@ -78,14 +80,15 @@ export function Button({
         rounded-xl font-semibold
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
         ${SIZE_CLASSES[size]}
-        ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+        ${isDisabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}
+        ${variant === 'primary' ? 'shadow-[0_4px_12px_rgba(99,102,241,0.15)] dark:shadow-[0_4px_16px_rgba(139,92,246,0.2)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.3)] dark:hover:shadow-[0_6px_24px_rgba(139,92,246,0.35)]' : ''}
         ${className}
       `}
       style={{
         ...getVariantStyle(variant),
         fontFamily: 'inherit',
         /* Transition colours but NOT transform (let Framer handle that) */
-        transition: 'background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease',
+        transition: 'background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease',
       }}
     >
       {loading ? (
